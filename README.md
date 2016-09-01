@@ -183,16 +183,58 @@ last_nameCatcher(event) {
   })
 },
 ~~~~
+-- Your code will now look something like this
+~~~~
+import React from 'react';
+import ReactDOM from 'react-dom';
+import axios from 'axios';
+
+var App = React.createClass({
+  getInitialState() {
+    return {
+      first_name: '',
+      last_name: '',
+      people: []
+    }
+  },
+  render() {
+    return (
+      <div>
+        <h1>Create Person</h1>
+        <input onChange={this.first_nameCatcher} type="text" />
+        <input onChange={this.last_nameCatcher} type="text" />
+        <button>Add Person</button>
+      </div>
+    )
+  },
+  first_nameCatcher(event) {
+    this.setState({
+      first_name: event.target.value
+    })
+  },
+  last_nameCatcher(event) {
+    this.setState({
+      last_name: event.target.value
+    })
+  }
+})
+
+ReactDOM.render(<App />, document.getElementById('app'));
+~~~~
 
 #CRUD - Create
-1 - Using `onClick={}` make an api call to add a person
+1 - Using `onClick={}` make an api call to add a person. Make sure to pass the data in call, axios works just like $http (how freaking cool!)
 ~~~~
-<button onClick={this.addPerson}>Add Person</button>
+<button onClick={this.createPerson}>Create Person</button>
 
-addPerson() {
+createPerson() {
+  var person = {first_name: this.state.first_name, last_name: this.state.last_name}
   axios({
     method: 'POST',
-    url: 'http://localhost:3000/api/add/person'
+    url: 'http://localhost:3000/api/add/person',
+    data: person
   })
 }
 ~~~~
+
+#CRUD - Read

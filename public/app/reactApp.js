@@ -13,10 +13,10 @@ var App = React.createClass({
   render() {
     return (
       <div>
-        <h1>Add Person</h1>
+        <h1>Create Person</h1>
         <input onChange={this.first_nameCatcher} type="text" />
         <input onChange={this.last_nameCatcher} type="text" />
-        <button onClick={this.addPerson}>Add Person</button>
+        <button onClick={this.createPerson}>Create Person</button>
       </div>
     )
   },
@@ -30,7 +30,7 @@ var App = React.createClass({
       last_name: event.target.value
     })
   },
-  addPerson() {
+  createPerson() {
     var person = {first_name: this.state.first_name, last_name: this.state.last_name}
     axios({
       method: 'POST',
