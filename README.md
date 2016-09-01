@@ -54,3 +54,29 @@ ReactDOM.render(<App />, document.getElementById('app'));
 ~~~~
 6 - Remember to run webpack to see any react changes or run `webpack -w` so webpack will re-run when you edit the reactApp.js file
 7 - Live-server or open your index.html and you should see Hello World on the page
+
+# Setting up your server and database
+1 - Using node create a basic backend. Make sure to install express, body-parser, massive and cors at the bare minimum
+`npm install --save express body-parser massive cors`
+2 - Your server.js file should look similar to this after Setup
+~~~~
+var express = require('express');
+var bodyParser = require('body-parser');
+var cors = require('cors');
+var massive = require('massive');
+var connectionString = 'postgress://jameslemire@localhost/sandbox'
+var massiveInstance = massive.connectSync({connectionString : connectionString});
+var app = express();
+app.set('db', massiveInstance);
+
+app.use(cors({origin: 'http://localhost:3000/'}));
+app.use(bodyParser.json());
+
+app.listen(3000, function() { console.log('Server started on port 3000'); });
+~~~~
+3 - Create a table named people `CREATE TABLE people (id SERIAL PRIMARY KEY, first_name VARCHAR(50), last_name VARCHAR(50) );`
+
+4 - Don't forget to make a db folder in the same directory as your server.js file
+
+#Setting up your endpoints
+1 - Now we're ready to make some CRUD endpoints in our server. (Create, Read, Update, Delete)
