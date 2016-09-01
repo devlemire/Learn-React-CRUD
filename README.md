@@ -11,10 +11,11 @@ Learn CRUD endpoint calls with React
 
 
 # Setting up your react app
-1 - Every react app, at the bare minimum needs, React and ReactDOM imported. On the very first two lines of code import them.
+1 - Every react app, at the bare minimum needs, React and ReactDOM imported. On the very first two lines of code import them. Also for this projet we'll need axios to make backend calls, import that as well.
 ~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 ~~~~
 2 - We're now ready to create our App using var.
 ~~~~
@@ -132,6 +133,31 @@ deletePerson.sql
 DELETE FROM people WHERE id = $1;
 ~~~~
 
-#Linking front-end to back-end
--- Now are back-end is ready to be hooked to the front-end
-1 - Add two inputs and a button on your reactApp. There first input will be for the first name, the second input will be for the last name, and the button will be to add the person
+#Setting up the front-end
+-- In order to get our endpoints to work with our front end we are going to need some inputs and a button
+
+1 - Add two inputs (first name, last name) and a button (add person)
+~~~~
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+var App = React.createClass({
+  getInitialState() {
+    return {
+      people: []
+    }
+  }
+  render() {
+    return (
+      <div>
+        <input type="text" />
+        <input type="text" />
+        <button>Add Person</button>
+      </div>
+    )
+  }
+})
+
+ReactDOM.render(<App />, document.getElementById('app'));
+~~~~
+2 -
