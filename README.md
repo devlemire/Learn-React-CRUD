@@ -286,7 +286,7 @@ var App = React.createClass({
         <br></br>
         <br></br>
         <h1>Read People</h1>
-        <button onClick={this.getPeople}>Get People</button>
+        <button onClick={this.readPeople}>Read People</button>
         {this.state.people.map( (value, index) => {
           return (
             <p key={index}>{value.first_name} {value.last_name}</p>
@@ -313,7 +313,7 @@ var App = React.createClass({
       data: person
     })
   },
-  getPeople() {
+  readPeople() {
     axios({
       method: 'GET',
       url: 'http://localhost:3000/api/people'
