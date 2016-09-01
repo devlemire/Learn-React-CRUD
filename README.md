@@ -58,6 +58,7 @@ ReactDOM.render(<App />, document.getElementById('app'));
 # Setting up your server and database
 1 - Using node create a basic backend. Make sure to install express, body-parser, massive and cors at the bare minimum
 `npm install --save express body-parser massive cors`
+
 2 - Your server.js file should look similar to this after Setup
 ~~~~
 var express = require('express');
