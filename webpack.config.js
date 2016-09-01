@@ -1,10 +1,10 @@
 module.exports = {
 	entry: {
-		main: 'THE FILE PATH TO YOUR REACT APP'
+		main: './public/app/reactApp.js'
 	},
 	output: {
 		filename: 'bundle.js',
-		path: 'THE FILE PATH TO OUTPUT bundle.js'
+		path: './public/script'
 	},
 	devtool: 'sourcemap',
 	module: {
