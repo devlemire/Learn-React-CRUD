@@ -76,15 +76,36 @@
 	      _react2.default.createElement(
 	        'h1',
 	        null,
-	        'Add Person'
+	        'Create Person'
 	      ),
 	      _react2.default.createElement('input', { onChange: this.first_nameCatcher, type: 'text' }),
 	      _react2.default.createElement('input', { onChange: this.last_nameCatcher, type: 'text' }),
 	      _react2.default.createElement(
 	        'button',
-	        { onClick: this.addPerson },
-	        'Add Person'
-	      )
+	        { onClick: this.createPerson },
+	        'Create Person'
+	      ),
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement(
+	        'h1',
+	        null,
+	        'Read People'
+	      ),
+	      _react2.default.createElement(
+	        'button',
+	        { onClick: this.getPeople },
+	        'Get People'
+	      ),
+	      this.state.people.map(function (value, index) {
+	        return _react2.default.createElement(
+	          'p',
+	          { key: index },
+	          value.first_name,
+	          ' ',
+	          value.last_name
+	        );
+	      })
 	    );
 	  },
 	  first_nameCatcher: function first_nameCatcher(event) {
@@ -97,12 +118,24 @@
 	      last_name: event.target.value
 	    });
 	  },
-	  addPerson: function addPerson() {
+	  createPerson: function createPerson() {
 	    var person = { first_name: this.state.first_name, last_name: this.state.last_name };
 	    (0, _axios2.default)({
 	      method: 'POST',
 	      url: 'http://localhost:3000/api/add/person',
 	      data: person
+	    });
+	  },
+	  getPeople: function getPeople() {
+	    var _this = this;
+	
+	    (0, _axios2.default)({
+	      method: 'GET',
+	      url: 'http://localhost:3000/api/people'
+	    }).then(function (r) {
+	      _this.setState({
+	        people: r.data
+	      });
 	    });
 	  }
 	});

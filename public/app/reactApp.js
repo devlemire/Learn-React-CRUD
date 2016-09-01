@@ -17,6 +17,15 @@ var App = React.createClass({
         <input onChange={this.first_nameCatcher} type="text" />
         <input onChange={this.last_nameCatcher} type="text" />
         <button onClick={this.createPerson}>Create Person</button>
+        <br></br>
+        <br></br>
+        <h1>Read People</h1>
+        <button onClick={this.getPeople}>Get People</button>
+        {this.state.people.map( (value, index) => {
+          return (
+            <p key={index}>{value.first_name} {value.last_name}</p>
+          )
+        })}
       </div>
     )
   },
@@ -37,6 +46,16 @@ var App = React.createClass({
       url: 'http://localhost:3000/api/add/person',
       data: person
     })
+  },
+  getPeople() {
+    axios({
+      method: 'GET',
+      url: 'http://localhost:3000/api/people'
+    }).then(r => {
+      this.setState({
+        people: r.data
+      })
+    });
   }
 })
 
