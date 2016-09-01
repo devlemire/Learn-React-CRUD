@@ -165,7 +165,7 @@ getInitialState() {
     last_name: '',
     people: []
   }
-}
+},
 ~~~~
 3 - Using `onChange={}` update these variables while the user types in either input.
 ~~~~
@@ -173,15 +173,15 @@ getInitialState() {
 <input onChange={this.last_nameCatcher} type="text" />
 
 first_nameCatcher(event) {
-  this.setState() {
+  this.setState({
     first_name: event.target.value
-  }
+  })
 },
 last_nameCatcher(event) {
-  this.setState() {
+  this.setState({
     last_name: event.target.value
-  }
-}
+  })
+},
 ~~~~
 
 #CRUD - Create

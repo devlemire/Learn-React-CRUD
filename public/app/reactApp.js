@@ -9,7 +9,7 @@ var App = React.createClass({
       last_name: '',
       people: []
     }
-  }
+  },
   render() {
     return (
       <div>
@@ -21,14 +21,14 @@ var App = React.createClass({
     )
   },
   first_nameCatcher(event) {
-    this.setState() {
+    this.setState({
       first_name: event.target.value
-    }
+    })
   },
   last_nameCatcher(event) {
-    this.setState() {
+    this.setState({
       last_name: event.target.value
-    }
+    })
   },
   addPerson() {
     axios({
