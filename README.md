@@ -22,7 +22,7 @@ var App = React.createClass({
 
 })
 ~~~~
-3 - React apps need a render method that return the html that gets put on the page. Create a render method for our app
+3 - React apps need a render method that returns the html that gets put on the page. Create a render method for our app
 ~~~~
 var App = React.createClass({
   render() {
