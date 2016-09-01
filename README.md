@@ -34,3 +34,23 @@ var App = React.createClass({
   }
 })
 ~~~~
+4 - To initialize our React application you have to use ReactDOM with the render method.  
+~~~~
+ReactDOM.render(<App />, document.getElementById('app'));
+~~~~
+5 - Now the basics of our react app are ready to go. Setup a basic html file and include at least one div in the body with the id of 'app'. We have to use 'app' because our initialize render method is looking for a document with element id of 'app' You can also change this to whatever you like. In addition include a script tag with a src attribute equal to the directory of where webpack will send bundle.js
+~~~~
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>React CRUD</title>
+  </head>
+  <body>
+    <div id='app'></div>
+    <script src="./script/bundle.js"></script>
+  </body>
+</html>
+~~~~
+6 - Remember to run webpack to see any react changes or run `webpack -w` so webpack will re-run when you edit the reactApp.js file
+7 - Live-server or open your index.html and you should see Hello World on the page
