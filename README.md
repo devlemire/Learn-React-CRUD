@@ -52,5 +52,6 @@ ReactDOM.render(<App />, document.getElementById('app'));
   </body>
 </html>
 ~~~~
-6 - Remember to run webpack to see any react changes or run `webpack -w` so webpack will re-run when you edit the reactApp.js file
+6 - Remember to run `webpack` to see any react changes or run `webpack -w` so webpack will re-run when you edit the reactApp.js file
+
 7 - Live-server or open your index.html and you should see Hello World on the page
