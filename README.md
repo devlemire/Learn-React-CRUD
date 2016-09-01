@@ -11,18 +11,18 @@ Learn CRUD endpoint calls with React
 
 
 # Setting up your react app
-1. Every react app, at the bare minimum needs, React and ReactDOM imported. On the very first two lines of code import them.
+1 . Every react app, at the bare minimum needs, React and ReactDOM imported. On the very first two lines of code import them.
 ~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
 ~~~~
-2. We're now ready to create our App using var.
+2 . We're now ready to create our App using var.
 ~~~~
 var App = React.createClass({
 
 })
 ~~~~
-3. React apps need a render method that return the html that gets put on the page. Create a render method for our app
+3 . React apps need a render method that return the html that gets put on the page. Create a render method for our app
 ~~~~
 var App = React.createClass({
   render() {
