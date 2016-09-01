@@ -11,10 +11,11 @@ Learn CRUD endpoint calls with React
 
 
 # Setting up your react app
-1 - Every react app, at the bare minimum needs, React and ReactDOM imported. On the very first two lines of code import them.
+1 - Every react app, at the bare minimum needs, React and ReactDOM imported. On the very first two lines of code import them. Also for this projet we'll need axios to make backend calls, import that as well.
 ~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 ~~~~
 2 - We're now ready to create our App using var.
 ~~~~
@@ -80,9 +81,9 @@ app.listen(3000, function() { console.log('Server started on port 3000'); });
 4 - Don't forget to make a db folder in the same directory as your server.js file
 
 #Setting up your endpoints
-1 - Now we're ready to make some CRUD endpoints in our server. (Create, Read, Update, Delete)
+-- Now we're ready to make some CRUD endpoints in our server. (Create, Read, Update, Delete)
 
-2 - Create four basic end points that follow CRUD with four sql commands. Your code should look similar to this
+1 - Create four basic end points that follow CRUD with four sql commands. Your code should look similar to this
 
 #### server.js
 ~~~~
@@ -131,3 +132,32 @@ deletePerson.sql
 ~~~~
 DELETE FROM people WHERE id = $1;
 ~~~~
+
+#Setting up the front-end
+-- In order to get our endpoints to work with our front end we are going to need some inputs and a button
+
+1 - Add two inputs (first name, last name) and a button (add person)
+~~~~
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+var App = React.createClass({
+  getInitialState() {
+    return {
+      people: []
+    }
+  }
+  render() {
+    return (
+      <div>
+        <input type="text" />
+        <input type="text" />
+        <button>Add Person</button>
+      </div>
+    )
+  }
+})
+
+ReactDOM.render(<App />, document.getElementById('app'));
+~~~~
+2 -

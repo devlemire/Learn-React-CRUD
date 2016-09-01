@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
 var App = React.createClass({
+  getInitialState() {
+    return {
+      people: []
+    }
+  }
   render() {
     return (
       <div>
-        <p>Hello World</p>
+        <input type="text" />
+        <input type="text" />
+        <button>Add Person</button>
       </div>
     )
   }
