@@ -131,3 +131,7 @@ deletePerson.sql
 ~~~~
 DELETE FROM people WHERE id = $1;
 ~~~~
+
+#Linking front-end to back-end
+-- Now are back-end is ready to be hooked to the front-end
+1 - Add two inputs and a button on your reactApp. There first input will be for the first name, the second input will be for the last name, and the button will be to add the person
