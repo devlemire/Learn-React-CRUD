@@ -98,9 +98,11 @@
 	    });
 	  },
 	  addPerson: function addPerson() {
+	    var person = { first_name: this.state.first_name, last_name: this.state.last_name };
 	    (0, _axios2.default)({
 	      method: 'POST',
-	      url: 'http://localhost:3000/api/add/person'
+	      url: 'http://localhost:3000/api/add/person',
+	      data: person
 	    });
 	  }
 	});

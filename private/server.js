@@ -5,10 +5,11 @@ var massive = require('massive');
 var connectionString = 'postgress://jameslemire@localhost/sandbox'
 var massiveInstance = massive.connectSync({connectionString : connectionString});
 var app = express();
-app.set('db', massiveInstance);
+var db = massiveInstance;
 
 app.use(cors({origin: 'http://localhost:3000/'}));
 app.use(bodyParser.json());
+app.use(express.static('../public'));
 
 app.post('/api/add/person', function(req, res) {
   db.addPerson([req.body.first_name, req.body.last_name], function(err, r) {
