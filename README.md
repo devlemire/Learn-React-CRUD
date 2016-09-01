@@ -73,6 +73,7 @@ app.set('db', massiveInstance);
 
 app.use(cors({origin: 'http://localhost:3000/'}));
 app.use(bodyParser.json());
+app.use(express.static('../public'));
 
 app.listen(3000, function() { console.log('Server started on port 3000'); });
 ~~~~
@@ -133,6 +134,8 @@ deletePerson.sql
 DELETE FROM people WHERE id = $1;
 ~~~~
 
+#Friendly Reminder
+-- Don't forget to pack your webz (shoutout to Heather). Meaning don't forget to run webpack when you're trying to see changes you make on your react app. Also remember we need our server running to make the api calls. Which means we also need postgres running. (What a handful..)
 #Setting up the front-end
 -- In order to get our endpoints to work with our front end we are going to need some inputs and a button
 
@@ -223,7 +226,7 @@ ReactDOM.render(<App />, document.getElementById('app'));
 ~~~~
 
 #CRUD - Create
-1 - Using `onClick={}` make an api call to add a person. Make sure to pass the data in call, axios works just like $http (how freaking cool!)
+1 - Using `onClick={}` make an api call to add a person. Make sure to pass the data in the call, axios works just like $http (how freaking cool!)
 ~~~~
 <button onClick={this.createPerson}>Create Person</button>
 
@@ -283,7 +286,7 @@ var App = React.createClass({
         <br></br>
         <br></br>
         <h1>Read People</h1>
-        <button onClick={this.getPeople}>Get People</button>
+        <button onClick={this.readPeople}>Read People</button>
         {this.state.people.map( (value, index) => {
           return (
             <p key={index}>{value.first_name} {value.last_name}</p>
@@ -310,7 +313,7 @@ var App = React.createClass({
       data: person
     })
   },
-  getPeople() {
+  readPeople() {
     axios({
       method: 'GET',
       url: 'http://localhost:3000/api/people'

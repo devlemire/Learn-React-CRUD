@@ -94,8 +94,8 @@
 	      ),
 	      _react2.default.createElement(
 	        'button',
-	        { onClick: this.getPeople },
-	        'Get People'
+	        { onClick: this.readPeople },
+	        'Read People'
 	      ),
 	      this.state.people.map(function (value, index) {
 	        return _react2.default.createElement(
@@ -126,7 +126,7 @@
 	      data: person
 	    });
 	  },
-	  getPeople: function getPeople() {
+	  readPeople: function readPeople() {
 	    var _this = this;
 	
 	    (0, _axios2.default)({
