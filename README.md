@@ -327,3 +327,5 @@ var App = React.createClass({
 
 ReactDOM.render(<App />, document.getElementById('app'));
 ~~~~
+#CRUD - Update
+-- Using the id we can update a person's information. Since we're going for the bare minimum, you'll have to know the user id you want to edit and input it into a field along with the first_name and last_name (Black Diamond: Click a user to get it's id, and update it with first name OR last name (Good luck!))
