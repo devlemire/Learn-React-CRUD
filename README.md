@@ -81,3 +81,53 @@ app.listen(3000, function() { console.log('Server started on port 3000'); });
 
 #Setting up your endpoints
 1 - Now we're ready to make some CRUD endpoints in our server. (Create, Read, Update, Delete)
+
+2 - Create four basic end points that follow CRUD with four sql commands. Your code should look similar to this
+
+#### server.js
+~~~~
+app.post('/api/add/person', function(req, res) {
+  db.addPerson([req.body.first_name, req.body.last_name], function(err, r) {
+    res.status(200).send('Person created');
+  });
+})
+
+app.get('/api/people', function(req, res) {
+  db.getPeople(function(err, r) {
+    res.json(r);
+  });
+});
+
+app.post('/api/update/person', function(req, res) {
+  db.updatePerson([req.body.first_name, req.body.last_name], function(err, r) {
+    res.status(200).send('Person updated');
+  })
+})
+
+app.delete('/api/person/:personId', function(req, res) {
+  db.deletePerson([req.params.personId], function(err, r) {
+    res.status(200).send('Person deleted');
+  })
+})
+~~~~
+
+#### SQL commands
+addPerson.sql
+~~~~
+INSERT INTO people (first_name, last_name) VALUES ($1, $2);
+~~~~
+getPeople.sql
+~~~~
+SELECT * FROM people;
+~~~~
+updatePerson.sql
+~~~~
+UPDATE people SET
+first_name = $2,
+last_name $3
+WHERE id = $1;
+~~~~
+deletePerson.sql
+~~~~
+DELETE FROM people WHERE id = $1;
+~~~~
