@@ -80,9 +80,9 @@ app.listen(3000, function() { console.log('Server started on port 3000'); });
 4 - Don't forget to make a db folder in the same directory as your server.js file
 
 #Setting up your endpoints
-1 - Now we're ready to make some CRUD endpoints in our server. (Create, Read, Update, Delete)
+-- Now we're ready to make some CRUD endpoints in our server. (Create, Read, Update, Delete)
 
-2 - Create four basic end points that follow CRUD with four sql commands. Your code should look similar to this
+1 - Create four basic end points that follow CRUD with four sql commands. Your code should look similar to this
 
 #### server.js
 ~~~~
