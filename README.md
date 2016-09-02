@@ -253,6 +253,10 @@ createPerson() {
   })
 }
 ~~~~
+Your code should now look something like this
+~~~~
+
+~~~~
 
 #CRUD - Read
 1 - To read our database we can use another `onClick={}` to make an api call to our backend. Then using a map function we can display the users it finds
