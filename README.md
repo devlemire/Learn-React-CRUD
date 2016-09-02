@@ -329,14 +329,14 @@ ReactDOM.render(<App />, document.getElementById('app'));
 #CRUD - Update
 -- Using the id we can update a person's information. Since we're going for the bare minimum, you'll have to know the user id you want to edit and input it into a field along with the first_name and last_name (Black Diamond: Click a user to get it's id, and update it with first name OR last name (Good luck!))
 
-1. Just like create person, add 3 input fields and a button using `onChange={}` & `onClick={}`
+1 - Just like create person, add 3 input fields and a button using `onChange={}` & `onClick={}`
 ~~~~
 <input onChange={this.edit_idCatcher} type="text" />
 <input onChange={this.edit_firstCatcher} type="text" />
 <input onChange={this.edit_lastCatcher} type="text" />
 <button onClick={this.updatePerson}>Update Person</button>
 ~~~~
-2. Create three new variables in `getInitialState() {}` edit_id, edit_first, edit_last.
+2 - Create three new variables in `getInitialState() {}` edit_id, edit_first, edit_last.
 ~~~~
 getInitialState() {
   return {
@@ -349,7 +349,7 @@ getInitialState() {
   }
 },
 ~~~~
-3. Update edit_first and edit_last using `onChange={}`
+3 - Update edit_first and edit_last using `onChange={}`
 ~~~~
 updatePerson() {
   var person = {
@@ -365,7 +365,7 @@ updatePerson() {
   })
 }
 ~~~~
-4. Fire the api call to edit that user with `onClick={}` (Black Diamond: Update person list after updating a user)
+4 - Fire the api call to edit that user with `onClick={}` (Black Diamond: Update person list after updating a user)
 ~~~~
 updatePerson() {
   var person = {
