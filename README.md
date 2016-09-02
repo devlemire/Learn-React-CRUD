@@ -101,7 +101,7 @@ app.get('/api/people', function(req, res) {
 });
 
 app.post('/api/update/person', function(req, res) {
-  db.updatePerson([req.body.first_name, req.body.last_name], function(err, r) {
+  db.updatePerson([req.body.id, req.body.first_name, req.body.last_name], function(err, r) {
     res.status(200).send('Person updated');
   })
 })
@@ -124,9 +124,8 @@ SELECT * FROM people;
 ~~~~
 updatePerson.sql
 ~~~~
-UPDATE people SET
-first_name = $2,
-last_name $3
+UPDATE people
+SET first_name = $2, last_name = $3
 WHERE id = $1;
 ~~~~
 deletePerson.sql
@@ -329,3 +328,57 @@ ReactDOM.render(<App />, document.getElementById('app'));
 ~~~~
 #CRUD - Update
 -- Using the id we can update a person's information. Since we're going for the bare minimum, you'll have to know the user id you want to edit and input it into a field along with the first_name and last_name (Black Diamond: Click a user to get it's id, and update it with first name OR last name (Good luck!))
+
+1. Just like create person, add 3 input fields and a button using `onChange={}` & `onClick={}`
+~~~~
+<input onChange={this.edit_idCatcher} type="text" />
+<input onChange={this.edit_firstCatcher} type="text" />
+<input onChange={this.edit_lastCatcher} type="text" />
+<button onClick={this.updatePerson}>Update Person</button>
+~~~~
+2. Create three new variables in `getInitialState() {}` edit_id, edit_first, edit_last.
+~~~~
+getInitialState() {
+  return {
+    first_name: '',
+    last_name: '',
+    people: [],
+    edit_id: '',
+    edit_first: '',
+    edit_last: ''
+  }
+},
+~~~~
+3. Update edit_first and edit_last using `onChange={}`
+~~~~
+updatePerson() {
+  var person = {
+    id: this.state.edit_id,
+    first_name: this.state.edit_first,
+    last_name: this.state.edit_last
+  }
+
+  axios({
+    method: 'POST',
+    url: 'http://localhost:3000/api/update/person',
+    data: person
+  })
+}
+~~~~
+4. Fire the api call to edit that user with `onClick={}` (Black Diamond: Update person list after updating a user)
+~~~~
+updatePerson() {
+  var person = {
+    id: this.state.edit_id,
+    first_name: this.state.edit_first,
+    last_name: this.state.edit_last
+  }
+
+  axios({
+    method: 'POST',
+    url: 'http://localhost:3000/api/update/person',
+    data: person
+  })
+}
+~~~~
+#CRUD - Delete
