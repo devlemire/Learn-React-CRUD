@@ -1,8 +1,5 @@
 # Learn-React-CRUD
-Hey, thanks for taking the time to read my tutorial. I hope I can make it clear to understand. Slack me if you think I missed something or should revise something. Also if you learn better by just looking at code, check out the FinishedProject branch.
-
-# NPM Install
-Make sure to do `npm install` when you are in the root directory of the project folder. Otherwise your import commands will fail.
+Learn CRUD endpoint calls with React
 
 # Setting up webpack
 1. I highly recommend you copy the package.json and webpack.config.js files and put them in a "resource" folder on your desktop. They are setup to be put into any new project
@@ -42,7 +39,7 @@ var App = React.createClass({
 ~~~~
 ReactDOM.render(<App />, document.getElementById('app'));
 ~~~~
-Now the basics of our react app are ready to go. We have to use 'app' because our initialize render method is looking for a document with element id of 'app' which we are about to make in the next step.
+Now the basics of our react app are ready to go. We have to use 'app' because our initialize render method is looking for a document with element id of 'app'.
 
 5 - Setup a basic html file and include at least one div in the body with the id of 'app'. In addition include a script tag with a src attribute equal to the directory of where webpack will send bundle.js
 ~~~~
@@ -63,19 +60,8 @@ Now the basics of our react app are ready to go. We have to use 'app' because ou
 7 - Live-server or open your index.html and you should see Hello World on the page
 
 # Setting up your server and database
-I recommend using a file structure that looks like this, but it's completely up to you
-~~~~
---private
-  -server.js
---public
-  --app
-  --script
-  -index.html
--.gitignore
--package.json
--webpack.config.js
-~~~~
-1 - Using node create a basic backend. Create an empty server.js file, then make sure you are in the directory where your server.js file is located in your termial and run `npm install` to get all the dependencies. When using queries in the same file as app.js you don't need to do `app.set('db', massiveInstance)` instead all you have to do is `var db = massiveInstance`. Check the code below for clarification. 
+1 - Using node create a basic backend. Make sure to install express, body-parser, massive and cors at the bare minimum
+`npm install --save express body-parser massive cors`
 
 2 - Your server.js file should look similar to this after you're done setting up
 ~~~~
@@ -86,8 +72,7 @@ var massive = require('massive');
 var connectionString = 'postgress://jameslemire@localhost/sandbox'
 var massiveInstance = massive.connectSync({connectionString : connectionString});
 var app = express();
-
-var db = massiveInstance;
+app.set('db', massiveInstance);
 
 app.use(cors({origin: 'http://localhost:3000/'}));
 app.use(bodyParser.json());
@@ -121,14 +106,14 @@ app.get('/api/people', function(req, res) {
 app.post('/api/update/person', function(req, res) {
   db.updatePerson([req.body.id, req.body.first_name, req.body.last_name], function(err, r) {
     res.status(200).send('Person updated');
-  });
-});
+  })
+})
 
 app.delete('/api/person/:personId', function(req, res) {
   db.deletePerson([req.params.personId], function(err, r) {
     res.status(200).send('Person deleted');
-  });
-});
+  })
+})
 ~~~~
 
 #### SQL commands
@@ -178,10 +163,10 @@ var App = React.createClass({
   render() {
     return (
       <div>
-        <h1>Create Person</h1>
+        <h1>Add Person</h1>
         <input type="text" />
         <input type="text" />
-        <button>Create Person</button>
+        <button>Add Person</button>
       </div>
     )
   }
@@ -235,7 +220,7 @@ var App = React.createClass({
         <h1>Create Person</h1>
         <input onChange={this.first_nameCatcher} type="text" />
         <input onChange={this.last_nameCatcher} type="text" />
-        <button>Create Person</button>
+        <button>Add Person</button>
       </div>
     )
   },
@@ -318,9 +303,9 @@ ReactDOM.render(<App />, document.getElementById('app'));
 #CRUD - Read
 1 - To read our database we can use another `onClick={}` to make an api call to our backend. Then using a map function we can display the users it finds
 ~~~~
-<button onClick={this.getPeople}>Get People</button>
+<button onClick={this.getPeople}>Read People</button>
 
-getPeople() {
+readPeople() {
   axios({
     method: 'GET',
     url: 'http://localhost:3000/api/people'
