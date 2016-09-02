@@ -1,5 +1,5 @@
 # Learn-React-CRUD
-Hey, thanks for taking the time to read my repo. I tried to make it as clear as possible. Slack me if you think something could be explained better. Also, if you learn better by looking at code, check out the other branch called FinishedProject.
+Hey, thanks for taking the time to read my repo. I tried to make it as clear as possible. Slack me (@jameslemire) if you think something could be explained better. Also, if you learn better by looking at code, check out the other branch called FinishedProject.
 
 # Setting up webpack
 1. I highly recommend you copy the package.json and webpack.config.js files and put them in a "resource" folder on your desktop. They are setup to be put into any new project
