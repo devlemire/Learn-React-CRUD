@@ -75,8 +75,7 @@ I recommend using a file structure that looks like this, but it's completely up 
 -package.json
 -webpack.config.js
 ~~~~
-1 - Using node create a basic backend. Make sure to install express, body-parser, massive and cors at the bare minimum
-`npm install --save express body-parser massive cors`
+1 - Using node create a basic backend. Create an empty server.js file, then make sure you are in the directory where your server.js file is located in your termial and run `npm install` to get all the dependencies
 
 2 - Your server.js file should look similar to this after you're done setting up
 ~~~~
