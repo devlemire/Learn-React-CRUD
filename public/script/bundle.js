@@ -46,6 +46,8 @@
 
 	'use strict';
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -58,159 +60,89 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
+	var _readPeople = __webpack_require__(194);
+	
+	var _readPeople2 = _interopRequireDefault(_readPeople);
+	
+	var _createPerson = __webpack_require__(196);
+	
+	var _createPerson2 = _interopRequireDefault(_createPerson);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var App = _react2.default.createClass({
-	  displayName: 'App',
-	  getInitialState: function getInitialState() {
-	    return {
-	      first_name: '',
-	      last_name: '',
-	      people: [],
-	      edit_id: '',
-	      edit_first: '',
-	      edit_last: '',
-	      delete_id: ''
-	    };
-	  },
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Create Person'
-	      ),
-	      _react2.default.createElement('input', { onChange: this.first_nameCatcher, type: 'text' }),
-	      _react2.default.createElement('input', { onChange: this.last_nameCatcher, type: 'text' }),
-	      _react2.default.createElement(
-	        'button',
-	        { onClick: this.createPerson },
-	        'Create Person'
-	      ),
-	      _react2.default.createElement('br', null),
-	      _react2.default.createElement('br', null),
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Read People'
-	      ),
-	      _react2.default.createElement(
-	        'button',
-	        { onClick: this.readPeople },
-	        'Read People'
-	      ),
-	      this.state.people.map(function (value, index) {
-	        return _react2.default.createElement(
-	          'p',
-	          { key: index },
-	          value.first_name,
-	          ' ',
-	          value.last_name
-	        );
-	      }),
-	      _react2.default.createElement('br', null),
-	      _react2.default.createElement('br', null),
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Update Person'
-	      ),
-	      _react2.default.createElement('input', { onChange: this.edit_idCatcher, type: 'text' }),
-	      _react2.default.createElement('input', { onChange: this.edit_firstCatcher, type: 'text' }),
-	      _react2.default.createElement('input', { onChange: this.edit_lastCatcher, type: 'text' }),
-	      _react2.default.createElement(
-	        'button',
-	        { onClick: this.updatePerson },
-	        'Update Person'
-	      ),
-	      _react2.default.createElement('br', null),
-	      _react2.default.createElement('br', null),
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Delete Person'
-	      ),
-	      _react2.default.createElement('input', { onChange: this.delete_idCatcher, type: 'text' }),
-	      _react2.default.createElement(
-	        'button',
-	        { onClick: this.deletePerson },
-	        'Delete Person'
-	      )
-	    );
-	  },
-	  first_nameCatcher: function first_nameCatcher(event) {
-	    this.setState({
-	      first_name: event.target.value
-	    });
-	  },
-	  last_nameCatcher: function last_nameCatcher(event) {
-	    this.setState({
-	      last_name: event.target.value
-	    });
-	  },
-	  createPerson: function createPerson() {
-	    var person = { first_name: this.state.first_name, last_name: this.state.last_name };
-	    (0, _axios2.default)({
-	      method: 'POST',
-	      url: 'http://localhost:3000/api/add/person',
-	      data: person
-	    });
-	  },
-	  readPeople: function readPeople() {
-	    var _this = this;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	    (0, _axios2.default)({
-	      method: 'GET',
-	      url: 'http://localhost:3000/api/people'
-	    }).then(function (r) {
-	      _this.setState({
-	        people: r.data
-	      });
-	    });
-	  },
-	  edit_idCatcher: function edit_idCatcher(event) {
-	    this.setState({
-	      edit_id: event.target.value
-	    });
-	  },
-	  edit_firstCatcher: function edit_firstCatcher(event) {
-	    this.setState({
-	      edit_first: event.target.value
-	    });
-	  },
-	  edit_lastCatcher: function edit_lastCatcher(event) {
-	    this.setState({
-	      edit_last: event.target.value
-	    });
-	  },
-	  updatePerson: function updatePerson() {
-	    var person = {
-	      id: this.state.edit_id,
-	      first_name: this.state.edit_first,
-	      last_name: this.state.edit_last
-	    };
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	    (0, _axios2.default)({
-	      method: 'POST',
-	      url: 'http://localhost:3000/api/update/person',
-	      data: person
-	    });
-	  },
-	  delete_idCatcher: function delete_idCatcher(event) {
-	    this.setState({
-	      delete_id: event.target.value
-	    });
-	  },
-	  deletePerson: function deletePerson() {
-	    console.log('delete call', 'http://localhost:3000/api/person/' + this.state.delete_id);
-	    (0, _axios2.default)({
-	      method: 'DELETE',
-	      url: 'http://localhost:3000/api/person/' + this.state.delete_id
-	    });
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var API_URL = 'http://localhost:3000/';
+	
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
+	
+	  function App(props) {
+	    _classCallCheck(this, App);
+	
+	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+	
+	    _this.state = { people: [], create_first: '', create_last: '' };
+	    return _this;
 	  }
-	});
+	
+	  _createClass(App, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var _this2 = this;
+	
+	      //Fires once when the component is first mounted
+	      _axios2.default.get(API_URL + 'api/people').then(function (r) {
+	        _this2.setState({
+	          people: r.data
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps) {
+	      var _this3 = this;
+	
+	      //Fires everytime with render()
+	      _axios2.default.get(API_URL + 'api/people').then(function (r) {
+	        if (r.data.length !== _this3.state.people.length) {
+	          _this3.setState({ people: r.data });
+	        } else {
+	          for (var i in r.data) {
+	            if (r.data[i].first_name !== _this3.state.people[i].first_name) {
+	              _this3.setState({ people: r.data });
+	            }
+	            if (r.data[i].last_name !== _this3.state.people[i].last_name) {
+	              _this3.setState({ people: r.data });
+	            }
+	          }
+	        }
+	      });
+	      return true;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_readPeople2.default, { api: API_URL, update: this.updatePeople.bind(this), people: this.state.people }),
+	        _react2.default.createElement(_createPerson2.default, { api: API_URL, update: this.updatePeople.bind(this) })
+	      );
+	    }
+	  }, {
+	    key: 'updatePeople',
+	    value: function updatePeople(r) {
+	      this.setState({ people: r });
+	    }
+	  }]);
+	
+	  return App;
+	}(_react2.default.Component);
 	
 	_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('app'));
 
@@ -22928,6 +22860,300 @@
 	  };
 	};
 
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _axios = __webpack_require__(172);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _updatePerson = __webpack_require__(195);
+	
+	var _updatePerson2 = _interopRequireDefault(_updatePerson);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var readPeople = function (_React$Component) {
+	  _inherits(readPeople, _React$Component);
+	
+	  function readPeople(props) {
+	    _classCallCheck(this, readPeople);
+	
+	    var _this = _possibleConstructorReturn(this, (readPeople.__proto__ || Object.getPrototypeOf(readPeople)).call(this, props));
+	
+	    _this.state = { showEdit: false, person: null };
+	    return _this;
+	  }
+	
+	  _createClass(readPeople, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'People - Click to delete'
+	        ),
+	        this.props.people.map(function (value, index) {
+	          return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'p',
+	              { className: 'same-line', key: value.id },
+	              value.first_name,
+	              ' ',
+	              value.last_name
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: _this2.toggleEdit.bind(_this2, value), className: 'same-line', key: 'btn_' + value.id },
+	              'Edit'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: _this2.deletePerson.bind(_this2, value.id), className: 'same-line', key: 'delete_btn_' + value.id },
+	              'Delete'
+	            )
+	          );
+	        }),
+	        this.state.showEdit ? _react2.default.createElement(_updatePerson2.default, { person: this.state.person, api: this.props.api, update: this.props.update, reset: this.reset.bind(this) }) : null
+	      );
+	    }
+	  }, {
+	    key: 'toggleEdit',
+	    value: function toggleEdit(person) {
+	      console.log(person);
+	      if (!this.state.person) {
+	        this.setState({ showEdit: true, person: person });
+	      } else {
+	        if (person.id === this.state.person.id) {
+	          this.setState({ showEdit: !this.state.showEdit, person: person });
+	        } else {
+	          this.setState({ showEdit: true, person: person });
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'reset',
+	    value: function reset() {
+	      this.setState({ showEdit: false, person: null });
+	    }
+	  }, {
+	    key: 'deletePerson',
+	    value: function deletePerson(id) {
+	      var _this3 = this;
+	
+	      _axios2.default.delete(this.props.api + 'api/person/' + id).then(function (r) {
+	        _this3.props.update(r.data);
+	      });
+	    }
+	  }]);
+	
+	  return readPeople;
+	}(_react2.default.Component);
+	
+	exports.default = readPeople;
+
+/***/ },
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _axios = __webpack_require__(172);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var updatePerson = function (_React$Component) {
+	  _inherits(updatePerson, _React$Component);
+	
+	  function updatePerson(props) {
+	    _classCallCheck(this, updatePerson);
+	
+	    var _this = _possibleConstructorReturn(this, (updatePerson.__proto__ || Object.getPrototypeOf(updatePerson)).call(this, props));
+	
+	    _this.state = { first_name: _this.props.person.first_name, last_name: _this.props.person.last_name };
+	    return _this;
+	  }
+	
+	  _createClass(updatePerson, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'Update Person - ',
+	          this.props.person.first_name,
+	          ' ',
+	          this.props.person.last_name
+	        ),
+	        _react2.default.createElement('input', { onChange: this.first_nameCatcher.bind(this), value: this.state.first_name }),
+	        _react2.default.createElement('input', { onChange: this.last_nameCatcher.bind(this), value: this.state.last_name }),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.updatePerson.bind(this) },
+	          'Update Person'
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'first_nameCatcher',
+	    value: function first_nameCatcher(e) {
+	      this.setState({ first_name: e.target.value });
+	    }
+	  }, {
+	    key: 'last_nameCatcher',
+	    value: function last_nameCatcher(e) {
+	      this.setState({ last_name: e.target.value });
+	    }
+	  }, {
+	    key: 'updatePerson',
+	    value: function updatePerson() {
+	      var _this2 = this;
+	
+	      _axios2.default.put(this.props.api + 'api/person/' + this.props.person.id, { first_name: this.state.first_name, last_name: this.state.last_name }).then(function (r) {
+	        _this2.props.update(r.data);
+	        _this2.props.reset();
+	      });
+	    }
+	  }]);
+	
+	  return updatePerson;
+	}(_react2.default.Component);
+	
+	exports.default = updatePerson;
+
+/***/ },
+/* 196 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _axios = __webpack_require__(172);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var createPerson = function (_React$Component) {
+	  _inherits(createPerson, _React$Component);
+	
+	  function createPerson(props) {
+	    _classCallCheck(this, createPerson);
+	
+	    var _this = _possibleConstructorReturn(this, (createPerson.__proto__ || Object.getPrototypeOf(createPerson)).call(this, props));
+	
+	    _this.state = { first_name: '', last_name: '' };
+	    return _this;
+	  }
+	
+	  _createClass(createPerson, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Create Person'
+	        ),
+	        _react2.default.createElement('input', { placeholder: 'First Name', onChange: this.first_nameCatcher.bind(this) }),
+	        _react2.default.createElement('input', { placeholder: 'Last Name', onChange: this.last_nameCatcher.bind(this) }),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.createPerson.bind(this) },
+	          'Create Person'
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'first_nameCatcher',
+	    value: function first_nameCatcher(e) {
+	      this.setState({ first_name: e.target.value });
+	    }
+	  }, {
+	    key: 'last_nameCatcher',
+	    value: function last_nameCatcher(e) {
+	      this.setState({ last_name: e.target.value });
+	    }
+	  }, {
+	    key: 'createPerson',
+	    value: function createPerson() {
+	      var _this2 = this;
+	
+	      _axios2.default.post(this.props.api + 'api/people', { first_name: this.state.first_name, last_name: this.state.last_name }).then(function (r) {
+	        _this2.props.update(r.data);
+	      });
+	    }
+	  }]);
+	
+	  return createPerson;
+	}(_react2.default.Component);
+	
+	exports.default = createPerson;
 
 /***/ }
 /******/ ]);
