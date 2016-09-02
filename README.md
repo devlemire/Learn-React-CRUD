@@ -1,5 +1,5 @@
 # Learn-React-CRUD
-Learn CRUD endpoint calls with React
+Hey, thanks for taking the time to read my repo. I tried to make it as clear as possible. Slack me (@jameslemire) if you think something could be explained better. Also, if you learn better by looking at code, check out the other branch called FinishedProject.
 
 # Setting up webpack
 1. I highly recommend you copy the package.json and webpack.config.js files and put them in a "resource" folder on your desktop. They are setup to be put into any new project
@@ -303,7 +303,7 @@ ReactDOM.render(<App />, document.getElementById('app'));
 #CRUD - Read
 1 - To read our database we can use another `onClick={}` to make an api call to our backend. Then using a map function we can display the users it finds
 ~~~~
-<button onClick={this.getPeople}>Read People</button>
+<button onClick={this.readPeople}>Read People</button>
 
 readPeople() {
   axios({
@@ -410,7 +410,7 @@ getInitialState() {
   }
 },
 ~~~~
-3 - Update edit_first and edit_last using `onChange={}`
+3 - Update edit_it, edit_first, and edit_last using `onChange={}`
 ~~~~
 edit_idCatcher(event) {
   this.setState({
