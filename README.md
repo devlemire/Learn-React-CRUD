@@ -1,6 +1,9 @@
 # Learn-React-CRUD
 Hey, thanks for taking the time to read my tutorial. I hope I can make it clear to understand. Slack me if you think I missed something or should revise something. Also if you learn better by just looking at code, check out the FinishedProject branch.
 
+# NPM Install
+Make sure to do `npm install` when you are in the root directory of the project folder. Otherwise your import commands will fail
+
 # Setting up webpack
 1. I highly recommend you copy the package.json and webpack.config.js files and put them in a "resource" folder on your desktop. They are setup to be put into any new project
 We are going to modify the package.json and webpack.config.js files so they are connected to this project's current file structure
