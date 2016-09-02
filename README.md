@@ -69,6 +69,7 @@ I recommend using a file structure that looks like this, but it's completely up 
   -server.js
 --public
   --app
+  --script
   -index.html
 -.gitignore
 -package.json
