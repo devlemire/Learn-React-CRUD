@@ -75,7 +75,7 @@ I recommend using a file structure that looks like this, but it's completely up 
 -package.json
 -webpack.config.js
 ~~~~
-1 - Using node create a basic backend. Create an empty server.js file, then make sure you are in the directory where your server.js file is located in your termial and run `npm install` to get all the dependencies
+1 - Using node create a basic backend. Create an empty server.js file, then make sure you are in the directory where your server.js file is located in your termial and run `npm install` to get all the dependencies. When using queries in the same file as app.js you don't need to do `app.set('db', massiveInstance)` instead all you have to do is `var db = massiveInstance`. Check the code below for clarification. 
 
 2 - Your server.js file should look similar to this after you're done setting up
 ~~~~
@@ -86,7 +86,8 @@ var massive = require('massive');
 var connectionString = 'postgress://jameslemire@localhost/sandbox'
 var massiveInstance = massive.connectSync({connectionString : connectionString});
 var app = express();
-app.set('db', massiveInstance);
+
+var db = massiveInstance;
 
 app.use(cors({origin: 'http://localhost:3000/'}));
 app.use(bodyParser.json());
