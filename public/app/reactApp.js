@@ -96,7 +96,7 @@ var App = React.createClass({
     }
 
     axios({
-      method: 'POST',
+      method: 'PUT',
       url: 'http://localhost:3000/api/update/person',
       data: person
     })
