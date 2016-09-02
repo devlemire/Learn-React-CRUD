@@ -410,7 +410,7 @@ getInitialState() {
   }
 },
 ~~~~
-3 - Update edit_first and edit_last using `onChange={}`
+3 - Update edit_it, edit_first, and edit_last using `onChange={}`
 ~~~~
 edit_idCatcher(event) {
   this.setState({
