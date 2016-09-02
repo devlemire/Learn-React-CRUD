@@ -66,7 +66,6 @@ Now the basics of our react app are ready to go. We have to use 'app' because ou
 I recommend using a file structure that looks like this, but it's completely up to you
 ~~~~
 --private
-  --node_modules
   -server.js
 --public
   --app
