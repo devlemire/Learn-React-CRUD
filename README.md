@@ -3,7 +3,7 @@ Learn CRUD endpoint calls with React
 
 # Setting up webpack
 1. I highly recommend you copy the package.json and webpack.config.js files and put them in a "resource" folder on your desktop. They are setup to be put into any new project
--- We are going to modify the package.json and webpack.config.js files so they are connected to this project's current file structure
+We are going to modify the package.json and webpack.config.js files so they are connected to this project's current file structure
 2. In your package.json we have the option to edit the name, description, and author keys (It isn't necessary) They are located on lines 2, 4, and 9
 -- However the webpack.config.js file changes ARE necessary. This file tells webpack where to output bundle.js and the entry point for webpack.
 3. In your webpack.config.js change line 3 to match the location of your reactApp.js file. The file location is based off of webpack.config.js' location. ( './public/app/reactApp.js' )
@@ -82,7 +82,7 @@ app.listen(3000, function() { console.log('Server started on port 3000'); });
 4 - Don't forget to make a db folder in the same directory as your server.js file
 
 #Setting up your endpoints
--- Now we're ready to make some CRUD endpoints in our server. (Create, Read, Update, Delete)
+Now we're ready to make some CRUD endpoints in our server. (Create, Read, Update, Delete)
 
 1 - Create four basic end points that follow CRUD with four sql commands. Your code should look similar to this
 
@@ -134,9 +134,9 @@ DELETE FROM people WHERE id = $1;
 ~~~~
 
 #Friendly Reminder
--- Don't forget to pack your webz (shoutout to Heather). Meaning don't forget to run webpack when you're trying to see changes you make on your react app. Also remember we need our server running to make the api calls. Which means we also need postgres running. (What a handful..)
+Don't forget to pack your webz (shoutout to Heather). Meaning don't forget to run webpack when you're trying to see changes you make on your react app. Also remember we need our server running to make the api calls. Which means we also need postgres running. (What a handful..)
 #Setting up the front-end
--- In order to get our endpoints to work with our front end we are going to need some inputs and a button
+In order to get our endpoints to work with our front end we are going to need some inputs and a button
 
 1 - Add two inputs (first name, last name) and a button (add person)
 ~~~~
@@ -185,7 +185,7 @@ last_nameCatcher(event) {
   })
 },
 ~~~~
--- Your code will now look something like this
+Your code will now look something like this
 ~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -261,7 +261,7 @@ getPeople() {
   )
 })}
 ~~~~
--- Your code you should now look something like this
+Your code you should now look something like this
 ~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -327,7 +327,7 @@ var App = React.createClass({
 ReactDOM.render(<App />, document.getElementById('app'));
 ~~~~
 #CRUD - Update
--- Using the id we can update a person's information. Since we're going for the bare minimum, you'll have to know the user id you want to edit and input it into a field along with the first_name and last_name (Black Diamond: Click a user to get it's id, and update it with first name OR last name (Good luck!))
+Using the id we can update a person's information. Since we're going for the bare minimum, you'll have to know the user id you want to edit and input it into a field along with the first_name and last_name (Black Diamond: Click a user to get it's id, and update it with first name OR last name (Good luck!))
 
 1 - Just like create person, add 3 input fields and a button using `onChange={}` & `onClick={}`
 ~~~~
@@ -383,7 +383,7 @@ updatePerson() {
   })
 }
 ~~~~
--- Your code should now look something like this
+Your code should now look something like this
 ~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -487,7 +487,7 @@ var App = React.createClass({
 ReactDOM.render(<App />, document.getElementById('app'));
 ~~~~
 #CRUD - Delete
--- Making a delete call is very similar to updating, but instead of 3 inputs, we only need one which is the id of the user we want to delete.
+Making a delete call is very similar to updating, but instead of 3 inputs, we only need one which is the id of the user we want to delete.
 
 1 - Add 1 input field and a button using `onChange={}` & `onClick={}`
 ~~~~
@@ -525,7 +525,7 @@ deletePerson() {
   })
 }
 ~~~~
--- Your code should now look something like this
+Your code should now look something like this
 ~~~~
 import React from 'react';
 import ReactDOM from 'react-dom';
