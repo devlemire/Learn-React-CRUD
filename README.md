@@ -3,6 +3,9 @@ Hey, thanks for taking the time to read my repo. I tried to make it as clear as 
 
 Also please note that this repo is just to explain the absolute minimum of making CRUD calls, it's not intended as the "best practice" way of using React with CRUD.
 
+# More Complex React CRUD
+If you understand how React with CRUD works check out the IndustryStandard page that goes into the a 'industry standard' way of using these concepts. I didn't include instructions for that one. It's pretty complicated...
+
 # Setting up webpack
 1. I highly recommend you copy the package.json and webpack.config.js files and put them in a "resource" folder on your desktop. They are setup to be put into any new project
 We are going to modify the package.json and webpack.config.js files so they are connected to this project's current file structure
