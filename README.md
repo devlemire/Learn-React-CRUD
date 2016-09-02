@@ -63,6 +63,18 @@ Now the basics of our react app are ready to go. We have to use 'app' because ou
 7 - Live-server or open your index.html and you should see Hello World on the page
 
 # Setting up your server and database
+I recommend using a file structure that looks like this, but it's completely up to you
+~~~~
+--private
+  --node_modules
+  -server.js
+--public
+  --app
+  -index.html
+-.gitignore
+-package.json
+-webpack.config.js
+~~~~
 1 - Using node create a basic backend. Make sure to install express, body-parser, massive and cors at the bare minimum
 `npm install --save express body-parser massive cors`
 
