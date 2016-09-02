@@ -42,7 +42,7 @@ var App = React.createClass({
 ~~~~
 ReactDOM.render(<App />, document.getElementById('app'));
 ~~~~
-Now the basics of our react app are ready to go. We have to use 'app' because our initialize render method is looking for a document with element id of 'app'.
+Now the basics of our react app are ready to go. We have to use 'app' because our initialize render method is looking for a document with element id of 'app' which we are about to make in the next step.
 
 5 - Setup a basic html file and include at least one div in the body with the id of 'app'. In addition include a script tag with a src attribute equal to the directory of where webpack will send bundle.js
 ~~~~
