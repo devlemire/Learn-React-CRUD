@@ -303,7 +303,7 @@ ReactDOM.render(<App />, document.getElementById('app'));
 #CRUD - Read
 1 - To read our database we can use another `onClick={}` to make an api call to our backend. Then using a map function we can display the users it finds
 ~~~~
-<button onClick={this.getPeople}>Read People</button>
+<button onClick={this.readPeople}>Read People</button>
 
 readPeople() {
   axios({
