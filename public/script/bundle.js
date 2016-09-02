@@ -69,7 +69,8 @@
 	      people: [],
 	      edit_id: '',
 	      edit_first: '',
-	      edit_last: ''
+	      edit_last: '',
+	      delete_id: ''
 	    };
 	  },
 	  render: function render() {
@@ -123,6 +124,19 @@
 	        'button',
 	        { onClick: this.updatePerson },
 	        'Update Person'
+	      ),
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement(
+	        'h1',
+	        null,
+	        'Delete Person'
+	      ),
+	      _react2.default.createElement('input', { onChange: this.delete_idCatcher, type: 'text' }),
+	      _react2.default.createElement(
+	        'button',
+	        { onClick: this.deletePerson },
+	        'Delete Person'
 	      )
 	    );
 	  },
@@ -182,6 +196,18 @@
 	      method: 'POST',
 	      url: 'http://localhost:3000/api/update/person',
 	      data: person
+	    });
+	  },
+	  delete_idCatcher: function delete_idCatcher(event) {
+	    this.setState({
+	      delete_id: event.target.value
+	    });
+	  },
+	  deletePerson: function deletePerson() {
+	    console.log('delete call', 'http://localhost:3000/api/person/' + this.state.delete_id);
+	    (0, _axios2.default)({
+	      method: 'DELETE',
+	      url: 'http://localhost:3000/api/person/' + this.state.delete_id
 	    });
 	  }
 	});

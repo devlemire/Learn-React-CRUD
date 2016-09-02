@@ -10,7 +10,8 @@ var App = React.createClass({
       people: [],
       edit_id: '',
       edit_first: '',
-      edit_last: ''
+      edit_last: '',
+      delete_id: ''
     }
   },
   render() {
@@ -36,6 +37,11 @@ var App = React.createClass({
         <input onChange={this.edit_firstCatcher} type="text" />
         <input onChange={this.edit_lastCatcher} type="text" />
         <button onClick={this.updatePerson}>Update Person</button>
+        <br></br>
+        <br></br>
+        <h1>Delete Person</h1>
+        <input onChange={this.delete_idCatcher} type="text" />
+        <button onClick={this.deletePerson}>Delete Person</button>
       </div>
     )
   },
@@ -93,6 +99,18 @@ var App = React.createClass({
       method: 'POST',
       url: 'http://localhost:3000/api/update/person',
       data: person
+    })
+  },
+  delete_idCatcher(event) {
+    this.setState({
+      delete_id: event.target.value
+    })
+  },
+  deletePerson() {
+    console.log('delete call', `http://localhost:3000/api/person/${this.state.delete_id}`);
+    axios({
+      method: 'DELETE',
+      url: `http://localhost:3000/api/person/${this.state.delete_id}`
     })
   }
 })
