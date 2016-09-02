@@ -138,8 +138,15 @@ DELETE FROM people WHERE id = $1;
 #Server file structure
 Your server file structure should look similar to this
 --private
-  -node_modules
-  
+  --db
+    -addPerson.sql
+    -deletePerson.sql
+    -getPeople.sql
+    -updatePerson.sql
+  --node_modules
+  -package.json
+  -server.js
+
 #Friendly Reminder
 Don't forget to pack your webz (shoutout to Heather). Meaning don't forget to run webpack when you're trying to see changes you make on your react app. Also remember we need our server running to make the api calls. Which means we also need postgres running. (What a handful..)
 #Setting up the front-end
