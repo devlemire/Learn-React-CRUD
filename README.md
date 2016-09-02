@@ -56,6 +56,7 @@ Now the basics of our react app are ready to go. We have to use 'app' because ou
 </html>
 ~~~~
 6 - Remember to run webpack to see any react changes or run `webpack -w` so webpack will re-run when you edit the reactApp.js file
+
 7 - Live-server or open your index.html and you should see Hello World on the page
 
 # Setting up your server and database
