@@ -7,7 +7,10 @@ var App = React.createClass({
     return {
       first_name: '',
       last_name: '',
-      people: []
+      people: [],
+      edit_id: '',
+      edit_first: '',
+      edit_last: ''
     }
   },
   render() {
@@ -26,6 +29,13 @@ var App = React.createClass({
             <p key={index}>{value.first_name} {value.last_name}</p>
           )
         })}
+        <br></br>
+        <br></br>
+        <h1>Update Person</h1>
+        <input onChange={this.edit_idCatcher} type="text" />
+        <input onChange={this.edit_firstCatcher} type="text" />
+        <input onChange={this.edit_lastCatcher} type="text" />
+        <button onClick={this.updatePerson}>Update Person</button>
       </div>
     )
   },
@@ -56,6 +66,34 @@ var App = React.createClass({
         people: r.data
       })
     });
+  },
+  edit_idCatcher(event) {
+    this.setState({
+      edit_id: event.target.value
+    })
+  },
+  edit_firstCatcher(event) {
+    this.setState({
+      edit_first: event.target.value
+    })
+  },
+  edit_lastCatcher(event) {
+    this.setState({
+      edit_last: event.target.value
+    })
+  },
+  updatePerson() {
+    var person = {
+      id: this.state.edit_id,
+      first_name: this.state.edit_first,
+      last_name: this.state.edit_last
+    }
+
+    axios({
+      method: 'POST',
+      url: 'http://localhost:3000/api/update/person',
+      data: person
+    })
   }
 })
 

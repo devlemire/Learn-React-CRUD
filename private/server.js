@@ -24,7 +24,8 @@ app.get('/api/people', function(req, res) {
 });
 
 app.post('/api/update/person', function(req, res) {
-  db.updatePerson([req.body.first_name, req.body.last_name], function(err, r) {
+  console.log('UPDATE PERSON FIRED', req.body);
+  db.updatePerson([req.body.id, req.body.first_name, req.body.last_name], function(err, r) {
     res.status(200).send('Person updated');
   })
 })
