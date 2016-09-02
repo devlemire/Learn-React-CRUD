@@ -63,7 +63,7 @@ Now the basics of our react app are ready to go. We have to use 'app' because ou
 1 - Using node create a basic backend. Make sure to install express, body-parser, massive and cors at the bare minimum
 `npm install --save express body-parser massive cors`
 
-2 - Your server.js file should look similar to this after Setup
+2 - Your server.js file should look similar to this after you're done setting up
 ~~~~
 var express = require('express');
 var bodyParser = require('body-parser');
