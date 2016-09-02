@@ -351,19 +351,21 @@ getInitialState() {
 ~~~~
 3 - Update edit_first and edit_last using `onChange={}`
 ~~~~
-updatePerson() {
-  var person = {
-    id: this.state.edit_id,
-    first_name: this.state.edit_first,
-    last_name: this.state.edit_last
-  }
-
-  axios({
-    method: 'POST',
-    url: 'http://localhost:3000/api/update/person',
-    data: person
+edit_idCatcher(event) {
+  this.setState({
+    edit_id: event.target.value
   })
-}
+},
+edit_firstCatcher(event) {
+  this.setState({
+    edit_first: event.target.value
+  })
+},
+edit_lastCatcher(event) {
+  this.setState({
+    edit_last: event.target.value
+  })
+},
 ~~~~
 4 - Fire the api call to edit that user with `onClick={}` (Black Diamond: Update person list after updating a user)
 ~~~~
@@ -381,4 +383,268 @@ updatePerson() {
   })
 }
 ~~~~
+-- Your code should now look something like this
+~~~~
+import React from 'react';
+import ReactDOM from 'react-dom';
+import axios from 'axios';
+
+var App = React.createClass({
+  getInitialState() {
+    return {
+      first_name: '',
+      last_name: '',
+      people: [],
+      edit_id: '',
+      edit_first: '',
+      edit_last: ''
+    }
+  },
+  render() {
+    return (
+      <div>
+        <h1>Create Person</h1>
+        <input onChange={this.first_nameCatcher} type="text" />
+        <input onChange={this.last_nameCatcher} type="text" />
+        <button onClick={this.createPerson}>Create Person</button>
+        <br></br>
+        <br></br>
+        <h1>Read People</h1>
+        <button onClick={this.readPeople}>Read People</button>
+        {this.state.people.map( (value, index) => {
+          return (
+            <p key={index}>{value.first_name} {value.last_name}</p>
+          )
+        })}
+        <br></br>
+        <br></br>
+        <h1>Update Person</h1>
+        <input onChange={this.edit_idCatcher} type="text" />
+        <input onChange={this.edit_firstCatcher} type="text" />
+        <input onChange={this.edit_lastCatcher} type="text" />
+        <button onClick={this.updatePerson}>Update Person</button>
+      </div>
+    )
+  },
+  first_nameCatcher(event) {
+    this.setState({
+      first_name: event.target.value
+    })
+  },
+  last_nameCatcher(event) {
+    this.setState({
+      last_name: event.target.value
+    })
+  },
+  createPerson() {
+    var person = {first_name: this.state.first_name, last_name: this.state.last_name}
+    axios({
+      method: 'POST',
+      url: 'http://localhost:3000/api/add/person',
+      data: person
+    })
+  },
+  readPeople() {
+    axios({
+      method: 'GET',
+      url: 'http://localhost:3000/api/people'
+    }).then(r => {
+      this.setState({
+        people: r.data
+      })
+    });
+  },
+  edit_idCatcher(event) {
+    this.setState({
+      edit_id: event.target.value
+    })
+  },
+  edit_firstCatcher(event) {
+    this.setState({
+      edit_first: event.target.value
+    })
+  },
+  edit_lastCatcher(event) {
+    this.setState({
+      edit_last: event.target.value
+    })
+  },
+  updatePerson() {
+    var person = {
+      id: this.state.edit_id,
+      first_name: this.state.edit_first,
+      last_name: this.state.edit_last
+    }
+
+    axios({
+      method: 'POST',
+      url: 'http://localhost:3000/api/update/person',
+      data: person
+    })
+  }
+})
+
+ReactDOM.render(<App />, document.getElementById('app'));
+~~~~
 #CRUD - Delete
+-- Making a delete call is very similar to updating, but instead of 3 inputs, we only need one which is the id of the user we want to delete.
+
+1 - Add 1 input field and a button using `onChange={}` & `onClick={}`
+~~~~
+<input onChange={this.delete_idCatcher} type="text" />
+<button onClick={this.deletePerson}>Delete Person</button>
+~~~~
+2 - Create one new variable in `getInitialState() {}` delete_id.
+~~~~
+getInitialState() {
+  return {
+    first_name: '',
+    last_name: '',
+    people: [],
+    edit_id: '',
+    edit_first: '',
+    edit_last: '',
+    delete_id: ''
+  }
+},
+~~~~
+3 - Update delete_id using `onChange={}`
+~~~~
+delete_idCatcher(event) {
+  this.setState({
+    delete_id: event.target.value
+  })
+}
+~~~~
+4 - Fire the api call to delete that user with `onClick={}`
+~~~~
+deletePerson() {
+  axios({
+    method: 'DELETE',
+    url: `http://localhost:3000/api/person/${this.state.deleteId}`
+  })
+}
+~~~~
+-- Your code should now look something like this
+~~~~
+import React from 'react';
+import ReactDOM from 'react-dom';
+import axios from 'axios';
+
+var App = React.createClass({
+  getInitialState() {
+    return {
+      first_name: '',
+      last_name: '',
+      people: [],
+      edit_id: '',
+      edit_first: '',
+      edit_last: '',
+      delete_id: ''
+    }
+  },
+  render() {
+    return (
+      <div>
+        <h1>Create Person</h1>
+        <input onChange={this.first_nameCatcher} type="text" />
+        <input onChange={this.last_nameCatcher} type="text" />
+        <button onClick={this.createPerson}>Create Person</button>
+        <br></br>
+        <br></br>
+        <h1>Read People</h1>
+        <button onClick={this.readPeople}>Read People</button>
+        {this.state.people.map( (value, index) => {
+          return (
+            <p key={index}>{value.first_name} {value.last_name}</p>
+          )
+        })}
+        <br></br>
+        <br></br>
+        <h1>Update Person</h1>
+        <input onChange={this.edit_idCatcher} type="text" />
+        <input onChange={this.edit_firstCatcher} type="text" />
+        <input onChange={this.edit_lastCatcher} type="text" />
+        <button onClick={this.updatePerson}>Update Person</button>
+        <br></br>
+        <br></br>
+        <h1>Delete Person</h1>
+        <input onChange={this.delete_idCatcher} type="text" />
+        <button onClick={this.deletePerson}>Delete Person</button>
+      </div>
+    )
+  },
+  first_nameCatcher(event) {
+    this.setState({
+      first_name: event.target.value
+    })
+  },
+  last_nameCatcher(event) {
+    this.setState({
+      last_name: event.target.value
+    })
+  },
+  createPerson() {
+    var person = {first_name: this.state.first_name, last_name: this.state.last_name}
+    axios({
+      method: 'POST',
+      url: 'http://localhost:3000/api/add/person',
+      data: person
+    })
+  },
+  readPeople() {
+    axios({
+      method: 'GET',
+      url: 'http://localhost:3000/api/people'
+    }).then(r => {
+      this.setState({
+        people: r.data
+      })
+    });
+  },
+  edit_idCatcher(event) {
+    this.setState({
+      edit_id: event.target.value
+    })
+  },
+  edit_firstCatcher(event) {
+    this.setState({
+      edit_first: event.target.value
+    })
+  },
+  edit_lastCatcher(event) {
+    this.setState({
+      edit_last: event.target.value
+    })
+  },
+  updatePerson() {
+    var person = {
+      id: this.state.edit_id,
+      first_name: this.state.edit_first,
+      last_name: this.state.edit_last
+    }
+
+    axios({
+      method: 'POST',
+      url: 'http://localhost:3000/api/update/person',
+      data: person
+    })
+  },
+  delete_idCatcher(event) {
+    this.setState({
+      delete_id: event.target.value
+    })
+  },
+  deletePerson() {
+    axios({
+      method: 'DELETE',
+      url: `http://localhost:3000/api/person/${this.state.deleteId}`
+    })
+  }
+})
+
+ReactDOM.render(<App />, document.getElementById('app'));
+~~~~
+
+#Congratulations
+You now know the basics of CRUD with React!
