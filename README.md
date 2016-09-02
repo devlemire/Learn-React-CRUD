@@ -121,14 +121,14 @@ app.get('/api/people', function(req, res) {
 app.post('/api/update/person', function(req, res) {
   db.updatePerson([req.body.id, req.body.first_name, req.body.last_name], function(err, r) {
     res.status(200).send('Person updated');
-  })
-})
+  });
+});
 
 app.delete('/api/person/:personId', function(req, res) {
   db.deletePerson([req.params.personId], function(err, r) {
     res.status(200).send('Person deleted');
-  })
-})
+  });
+});
 ~~~~
 
 #### SQL commands
