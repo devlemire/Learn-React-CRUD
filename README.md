@@ -149,7 +149,7 @@ Your server file structure should look similar to this
   -server.js
 ~~~~
 #Friendly Reminder
-Don't forget to pack your webz (shoutout to Heather). Meaning don't forget to run webpack when you're trying to see changes you make on your react app. Also remember we need our server running to make the api calls. Which means we also need postgres running. (What a handful..)
+Don't forget to pack your webz (shoutout to Heather). Meaning don't forget to run webpack when you're trying to see changes you make on your react app. Also remember we need our server running to make the api calls. Which means we also need postgres running. Which means live-server will no longer be of use because you need to be on the address that you're using for express.static. (What a handful..)
 #Setting up the front-end
 In order to get our endpoints to work with our front end we are going to need some inputs and a button
 
