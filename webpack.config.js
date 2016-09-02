@@ -4,7 +4,7 @@ module.exports = {
 	},
 	output: {
 		filename: 'bundle.js',
-		path: 'THE FILE PATH TO OUTPUT bundle.js'
+		path: 'THE FILE PATH TO OUTPUT'
 	},
 	devtool: 'sourcemap',
 	module: {
