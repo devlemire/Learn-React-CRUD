@@ -177,10 +177,10 @@ var App = React.createClass({
   render() {
     return (
       <div>
-        <h1>Add Person</h1>
+        <h1>Create Person</h1>
         <input type="text" />
         <input type="text" />
-        <button>Add Person</button>
+        <button>Create Person</button>
       </div>
     )
   }
@@ -234,7 +234,7 @@ var App = React.createClass({
         <h1>Create Person</h1>
         <input onChange={this.first_nameCatcher} type="text" />
         <input onChange={this.last_nameCatcher} type="text" />
-        <button>Add Person</button>
+        <button>Create Person</button>
       </div>
     )
   },
